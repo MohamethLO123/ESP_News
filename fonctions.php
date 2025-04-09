@@ -3,7 +3,7 @@
 
         // ----------------------- Categories ----------------------
 
-    // Methode qui permet d'ajouter une categorie
+    // Fonction qui permet d'ajouter une categorie
     function ajouterCategorie($nom)
     {
         global $pdo;
@@ -12,7 +12,7 @@
         $stmt->execute(["nom" => $nom]);
     }
 
-    // Methode qui permet de lister tous les categories
+    // Fonction qui permet de lister tous les categories
     function getCategories()
     {
         global $pdo;
@@ -22,7 +22,7 @@
 
         // ----------------------- Articles ----------------------
    
-    // Methode qui permet d'ajouter un article
+    // Fonction qui permet d'ajouter un article
     function ajouterArticle($titre, $contenu, $categorie)
     {
         global $pdo;
@@ -35,7 +35,7 @@
         ]);
     }
 
-    // Methode qui permet de recuperer tous les articles
+    // Fonction qui permet de recuperer tous les articles
     function getArticles()
     {
         global $pdo;
@@ -45,7 +45,7 @@
         return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Methode qui permet de mettre a jour un article
+    // Fonction qui permet de mettre a jour un article
     function updateArticle($id, $titre, $contenu, $categorie)
     {
         global $pdo;
@@ -59,7 +59,7 @@
         ]);
     }
 
-    // Methode qui permet de supprimer un article
+    // Fonction qui permet de supprimer un article
     function deleteArticle($id)
     {
         global $pdo;
@@ -68,7 +68,7 @@
         $stmt->execute(["id" => $id]);
     }
 
-    // Methode qui permet de filtrer les articles par categorie
+    // Fonction qui permet de filtrer les articles par categorie
     function getArticleByCategorie($categorieId)
     {
         global $pdo;
@@ -81,5 +81,21 @@
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['id' => $categorieId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fonction qui permet d'afficher les six derniers acticles
+    function getDerniersArticles($limite) 
+    {
+        global $pdo;
+        $sql = "SELECT a.*, c.libelle AS nom_categorie 
+                FROM article a 
+                LEFT JOIN categorie c ON a.categorie = c.id 
+                ORDER BY a.dateCreation DESC 
+                LIMIT :limite";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':limite', (int) $limite, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
