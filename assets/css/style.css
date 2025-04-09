@@ -1,0 +1,19 @@
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding-bottom: 60px; /* Hauteur du footer */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Doit correspondre au padding-bottom du body */
+}
+
+
+.css-navbar
+{
+    box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.54);
+}
