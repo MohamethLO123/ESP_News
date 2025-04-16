@@ -45,6 +45,16 @@
         return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Récupérer un article par son ID
+    function getArticleById($id) 
+    {
+        global $pdo;
+        $sql = "SELECT * FROM article WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Fonction qui permet de mettre a jour un article
     function updateArticle($id, $titre, $contenu, $categorie)
     {

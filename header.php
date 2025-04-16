@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#">Catégories</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Articles</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lisArticle.php">Articles</a></li>
             </ul>
         </div>
     </div>

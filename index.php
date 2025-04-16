@@ -26,9 +26,9 @@
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($article['titre']) ?></h5>
                         <p class="card-text">
-                            <?= htmlspecialchars(substr($article['contenu'], 0, 120)) ?>...
+                            <?= htmlspecialchars(substr($article['contenu'], 0, 30)) ?>...
+                            <span><a href="detailArticle.php?id=<?= $article['id'] ?>">Lire la suite</a></span>
                         </p>
-                        <a href="detailArticle.php?id=<?= $article['id'] ?>" class="btn btn-primary">Lire la suite</a>
                     </div>
                 </div>
             </div>
